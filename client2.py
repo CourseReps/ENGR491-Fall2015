@@ -3,9 +3,10 @@ import serial
 
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
+#test changes to see if git is working
 
 
-HOST = '192.168.1.94'
+HOST = '192.168.43.96'
 PORT = 38200
 server_socket = socket(AF_INET, SOCK_STREAM)
 server_socket.connect((HOST,PORT))
