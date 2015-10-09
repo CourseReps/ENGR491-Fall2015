@@ -1,0 +1,4 @@
+Functioning basic android app that reads acceleration sensors
+Copy MainActivity.java and activity_main.xml into a new project
+
+- MW
