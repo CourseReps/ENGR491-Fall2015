@@ -1,0 +1,4 @@
+Using tutorial from: http://www.vogella.com/tutorials/AndroidSQLite/article.html
+
+Creates a basic SQLite database that stores strings of comments
+DBHelper works with SQL to set up table and database layout
