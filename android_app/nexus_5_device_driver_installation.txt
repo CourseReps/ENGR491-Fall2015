@@ -1,0 +1,8 @@
+download drivers here:
+http://developer.android.com/sdk/win-usb.html#top
+
+follow these instructions:
+http://developer.android.com/tools/extras/oem-usb.html#InstallingDriver
+
+if you run into older SDK error after you thit run: change this line in build.gradle:
+minSdkVersion 15
