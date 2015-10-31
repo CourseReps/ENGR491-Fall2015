@@ -68,7 +68,6 @@ public class SensorsDataSource {
         SensorVal newSensor = cursorToSensor(cursor);
         cursor.close();
         return newSensor;
-        
     }
 
     // deletes comment based on id, top first

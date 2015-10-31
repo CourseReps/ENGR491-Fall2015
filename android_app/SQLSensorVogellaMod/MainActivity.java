@@ -16,8 +16,10 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.SimpleCursorAdapter;
 
 import org.w3c.dom.Comment;
 
@@ -37,9 +39,13 @@ public class MainActivity extends ListActivity implements SensorEventListener {
     private float deltaYMax = 0;
     private float deltaZMax = 0;
 
-    private float deltaX = 0;
+/*    private float deltaX = 0;
     private float deltaY = 0;
-    private float deltaZ = 0;
+    private float deltaZ = 0;*/
+
+    public float deltaX = 0;
+    public float deltaY = 0;
+    public float deltaZ = 0;
 
     private SensorsDataSource datasource;
 
@@ -56,6 +62,7 @@ public class MainActivity extends ListActivity implements SensorEventListener {
         setContentView(R.layout.activity_main); // load the .xml layout
         initializeViews();
 
+        // INITIALIZES SENSORS
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         // test case, are we sensing an accelerometer?
         if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
@@ -70,19 +77,45 @@ public class MainActivity extends ListActivity implements SensorEventListener {
             // fail! we dont have an accelerometer!
         }
 
-        //initialize vibration
-        //v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
 
-        // set up the database
-        /*
+        // INITIALIZES DATABASE
         datasource = new SensorsDataSource(this);
         datasource.open();
 
+        // INITIALIZES LISTVIEW WIDGET
         List<SensorVal> values = datasource.getAllSensors();
 
-        ArrayAdapter<SensorVal> adapter = new ArrayAdapter<SensorVal>(this,
-                android.R.layout.simple_list_item_1, values);
-        setListAdapter(adapter);*/
+        // use the SimpleCursorAdapter to show elements in a ListView
+        ArrayAdapter<SensorVal> adapter = new ArrayAdapter<SensorVal>(this, android.R.layout.simple_expandable_list_item_1, values);
+        setListAdapter(adapter);
+
+        // INITIALIZES BUTTON
+        Button button1 = (Button) findViewById(R.id.btnStore);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getApplicationContext(), "Store button pressed", Toast.LENGTH_LONG).show();
+
+                // COMMENTED OUT FOR CRASH TESTING
+                //ArrayAdapter<SensorVal> adapter = (ArrayAdapter<SensorVal>) getListAdapter();
+
+
+                // VALUES BEING SAVED ARE WEIRD SENSORVAL@ID INSTEAD OF ACCEL NUMBERS
+                ArrayAdapter<String> adapter = (ArrayAdapter<String>) getListAdapter();
+
+                SensorVal sensor = null;
+
+                sensor = datasource.createSensor(deltaX, deltaY, deltaZ);
+
+                //Toast.makeText(getApplicationContext(), sensor.getAccels(), Toast.LENGTH_LONG).show();
+                //adapter.add(sensor);
+                adapter.add(sensor.getAccels());
+
+                adapter.notifyDataSetChanged();
+            }
+
+        });
     }
 
     public void initializeViews() {
@@ -90,10 +123,11 @@ public class MainActivity extends ListActivity implements SensorEventListener {
         currentX = (TextView) findViewById(R.id.currentX);
         currentY = (TextView) findViewById(R.id.currentY);
         currentZ = (TextView) findViewById(R.id.currentZ);
-
+/*
+        // REMOVED BECAUSE MAX VALUES NOT UTILIZED IN THIS APP
         maxX = (TextView) findViewById(R.id.maxX);
         maxY = (TextView) findViewById(R.id.maxY);
-        maxZ = (TextView) findViewById(R.id.maxZ);
+        maxZ = (TextView) findViewById(R.id.maxZ);*/
     }
 
     //onResume() register the accelerometer for listening the events
@@ -122,7 +156,8 @@ public class MainActivity extends ListActivity implements SensorEventListener {
         // display the current x,y,z accelerometer values
         displayCurrentValues();
         // display the max x,y,z accelerometer values
-        displayMaxValues();
+        // REMOVED BECAUSE MAX VALUES NOT UTILIZED IN THIS APP
+        // displayMaxValues();
 
         // get the change of the x,y,z values of the accelerometer
         deltaX = Math.abs(lastX - event.values[0]);
@@ -154,7 +189,10 @@ public class MainActivity extends ListActivity implements SensorEventListener {
     }
 
     // display the max x,y,z accelerometer values
+    /*
+    // REMOVED BECAUSE MAX VALUES NOT UTILIZED IN THIS APP
     public void displayMaxValues() {
+
         if (deltaX > deltaXMax) {
             deltaXMax = deltaX;
             maxX.setText(Float.toString(deltaXMax));
@@ -168,23 +206,8 @@ public class MainActivity extends ListActivity implements SensorEventListener {
             maxZ.setText(Float.toString(deltaZMax));
         }
     }
+    */
 
-    public void storeButtonClicked(View view) {
-        // Tests the button function
-        Toast.makeText(this, "Button 1 pressed",
-                Toast.LENGTH_LONG).show();
-/* // IS THIS WHAT'S CRASHING THIS
-        ArrayAdapter<SensorVal> adapter = (ArrayAdapter<SensorVal>) getListAdapter();
-
-        SensorVal sensor = null;
-
-        sensor = datasource.createSensor(deltaX, deltaY, deltaZ);
-        adapter.add(sensor);
-
-        adapter.notifyDataSetChanged();
-        */
-
-    }
 }
 
 

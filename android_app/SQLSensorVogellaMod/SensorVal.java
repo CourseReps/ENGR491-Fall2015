@@ -1,5 +1,3 @@
-// replaces Comment.java
-
 package com.example.minda.sqlsensorvogellamod;
 
 import android.widget.TextView;
@@ -27,7 +25,7 @@ public class SensorVal {
         return comment;
     }*/
 
-    public float getX_accel() {
+    /*public float getX_accel() {
         return x_accel;
     }
 
@@ -37,6 +35,10 @@ public class SensorVal {
 
     public float getZ_accel() {
         return z_accel;
+    }*/
+
+    public String getAccels() {
+        return Float.toString(x_accel) + " " + Float.toString(y_accel) + " " + Float.toString(z_accel);
     }
 
     /*public void setComment(String comment) {

@@ -6,75 +6,15 @@
     android:background="#ffffff"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingTop="20dp" >
+    android:paddingTop="10dp" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:text="Max Acceleration:"
-        android:textSize="20dp" />
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:text="@string/values" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="Max Acceleration: X-Axis"
-        android:textSize="15dp" />
 
-    <TextView
-        android:id="@+id/maxX"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="0.0"
-        android:textSize="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="Max Acceleration: Y-Axis"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/maxY"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="0.0"
-        android:textSize="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="Max Acceleration: Z-Axis"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/maxZ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="0.0"
-        android:textSize="20dp" />
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity = "center"
-        android:layout_marginTop="10dp"
-        android:text="@string/store_db"
-        android:onClick="storeButtonClicked"
-        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -87,7 +27,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="80dp"
         android:background="#ffffff"
         android:gravity="center|top"
         android:orientation="horizontal" >
@@ -171,7 +111,17 @@
 
         </LinearLayout>
 
+
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnStore"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity = "center"
+        android:layout_marginTop="10dp"
+        android:text="@string/store_db"
+
+        />
 
 </LinearLayout>
