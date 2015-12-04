@@ -23,7 +23,6 @@ void setup() {
   Serial1.begin(9600); //This is the setup function where the serial port is initialised,
   Serial.begin(9600);
   attachInterrupt(digitalPinToInterrupt(hallsensor), rpm, RISING); //and the interrupt is attached
-
 }
 
 // the loop() method runs over and over again,
@@ -34,17 +33,19 @@ void loop ()
   digitalWrite(ledPin, ledState);
   NbTopsFan = 0;   //Set NbTops to 0 ready for calculations
   sei();      //Enables interrupts
-    delay(1000);
+    delay(100);
   cli();      //Disable interrupts
   //Serial.println(NbTopsFan);
   Calc = Calc+1;//(NbTopsFan * 60 / 73); //(Pulse frequency x 60) / 73Q, = flow rate in L/hour 
   json["flow_rate"]=Calc;
-  //json.printTo(Serial);
-  //Serial.println();
-  Serial1.println(Calc);
+  
+  //Serial1.println();
+  //Serial1.println(Calc);
   //json.printTo(Serial1);
-  //Serial1.printf("{\"Sensor\":\"flow\",\"flow_rate\":%d\"units\"",Calc);
-  ////\"Sensor\":\"flow\",\"flow_rate\":%d,\"units\":\"L/Hr\"}",Calc);
+  Serial1.printf("{\"Sensor\":\"flow\",\"flow_rate\":%d,\"unit",Calc);
+
+  //Serial1.println();
+  //Serial1.printf("\"");
   Serial.printf("{\"Sensor\":\"flow\",\"flow_rate\":%d,\"units\":\"L/Hr\"}\n",Calc);
 }
  
