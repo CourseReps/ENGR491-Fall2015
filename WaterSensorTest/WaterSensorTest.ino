@@ -36,13 +36,13 @@ void loop ()
     delay(100);
   cli();      //Disable interrupts
   //Serial.println(NbTopsFan);
-  Calc = Calc+1;//(NbTopsFan * 60 / 73); //(Pulse frequency x 60) / 73Q, = flow rate in L/hour 
-  json["flow_rate"]=Calc;
+  Calc = NbTopsFan * (60 / 73); //(Pulse frequency x 60) / 73Q, = flow rate in L/hour 
+  //json["flow_rate"]=Calc;
   
   //Serial1.println();
   //Serial1.println(Calc);
   //json.printTo(Serial1);
-  Serial1.printf("{\"Sensor\":\"flow\",\"flow_rate\":%d,\"unit",Calc);
+  //Serial1.printf("{\"Sensor\":\"flow\",\"flow_rate\":%d,\"unit",Calc);
 
   //Serial1.println();
   //Serial1.printf("\"");
